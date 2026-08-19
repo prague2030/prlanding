@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>your robots is printing...</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#000;
+    font-family:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;
+    padding:24px;
+  }
+
+  .headline{
+    font-size:clamp(28px,7vw,72px);
+    font-weight:600;
+    letter-spacing:-.02em;
+    line-height:1.1;
+    text-align:center;
+
+    background-image:linear-gradient(90deg,
+      #ffffff,#8ab4ff,#c58bff,#ff9ecb,#ffd59e,#ffffff);
+    background-size:300% 100%;
+    background-position:0% center;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
+  }
+
+  .dots b{font-weight:600}
+</style>
+</head>
+<body>
+  <h1 class="headline" id="h">your robots is printing<span class="dots"><b>.</b><b>.</b><b>.</b></span></h1>
+
+  <script>
+    const h = document.getElementById('h');
+
+    // gradient flow (JS-driven, always runs)
+    let pos = 0;
+    function flow(){
+      pos = (pos + 0.35) % 300;
+      h.style.backgroundPosition = pos + '% center';
+      requestAnimationFrame(flow);
+    }
+    requestAnimationFrame(flow);
+
+    // blinking dots
+    const dots = h.querySelectorAll('.dots b');
+    let t = 0;
+    setInterval(() => {
+      dots.forEach((d,i) => d.style.opacity = (i === t % 3) ? '1' : '0.15');
+      t++;
+    }, 300);
+  </script>
+</body>
+</html>
