@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The printing of your robot will be completed shortly.</title>
+<meta name="description" content="Printing in progress — Prague-based robotics startup. 3D printing your custom robot: humanoids, rovers, robotic arms. Delivery & production updates for Prague, Czechia.">
+<meta name="keywords" content="Prague robots, Czechia robotics, robot printing, 3D printed robot, humanoids, rovers, robotic arms, Prague startup, robotics manufacturing">
+<meta name="robots" content="index,follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet">
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Printing in progress — Prague Robotics">
+<meta property="og:description" content="Printing in progress — Prague-based robotics startup. 3D printing your custom robot: humanoids, rovers, robotic arms. Delivery & production updates for Prague, Czechia.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Printing in progress — Prague Robotics">
+<meta name="twitter:description" content="Printing in progress — Prague-based robotics startup. 3D printing your custom robot: humanoids, rovers, robotic arms. Delivery & production updates for Prague, Czechia.">
+
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{height:100%}
@@ -38,7 +50,35 @@
   }
 
   .dots b{font-weight:600}
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .headline { background-position: 50% center !important; }
+  }
 </style>
+
+<!-- Structured data (Organization + geo targeting for Prague, Czechia) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Prague Robotics",
+  "url": "",
+  "description": "Prague-based robotics startup focused on 3D printing custom robots: humanoids, rovers and robotic arms.",
+  "keywords": "Prague robots, Czechia robotics, robot printing, 3D printed robot, humanoids, rovers, robotic arms",
+  "location": {
+    "@type": "Place",
+    "name": "Prague",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Prague",
+      "addressRegion": "Prague",
+      "addressCountry": "CZ"
+    }
+  }
+}
+</script>
+
 </head>
 <body>
   <h1 class="headline" id="h">The printing of your robot will be completed shortly.<span class="dots"><b>.</b><b>.</b><b>.</b></span></h1>
@@ -55,13 +95,15 @@
     }
     requestAnimationFrame(flow);
 
-    // blinking dots
+    // blinking dots (safe if nodes missing)
     const dots = h.querySelectorAll('.dots b');
-    let t = 0;
-    setInterval(() => {
-      dots.forEach((d,i) => d.style.opacity = (i === t % 3) ? '1' : '0.15');
-      t++;
-    }, 300);
+    if (dots.length > 0) {
+      let t = 0;
+      setInterval(() => {
+        dots.forEach((d,i) => d.style.opacity = (i === t % 3) ? '1' : '0.15');
+        t++;
+      }, 300);
+    }
   </script>
 </body>
 </html>
